@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation with Feedback</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .form-container {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+        
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 2px solid #ccc;
+            font-size: 14px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+        
+        .form-group.success input,
+        .form-group.success textarea {
+            border-color: #28a745;
+        }
+        
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #dc3545;
+        }
+        
+        .form-group small {
+            color: #dc3545;
+            visibility: hidden;
+        }
+        
+        .form-group.error small {
+            visibility: visible;
+        }
+        
+        button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Contact Form</h2>
+        <form id="contactForm">
+            <div class="form-group" id="nameGroup">
+                <label>Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+                <small>Error message</small>
+            </div>
+            <div class="form-group" id="emailGroup">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+                <small>Error message</small>
+            </div>
+            <div class="form-group" id="messageGroup">
+                <label>Message</label>
+                <textarea id="message" rows="4" placeholder="Enter your message"></textarea>
+                <small>Error message</small>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const messageInput = document.getElementById('message');
+
+        function setError(element, message) {
+            const group = element.parentElement;
+            group.className = 'form-group error';
+            const small = group.querySelector('small');
+            small.innerText = message;
+        }
+
+        function setSuccess(element) {
+            const group = element.parentElement;
+            group.className = 'form-group success';
+        }
+
+        function checkName() {
+            const nameValue = nameInput.value.trim();
+            if (nameValue === '') {
+                setError(nameInput, 'Name is required');
+                return false;
+            } else {
+                setSuccess(nameInput);
+                return true;
+            }
+        }
+
+        function checkEmail() {
+            const emailValue = emailInput.value.trim();
+            const re = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (emailValue === '') {
+                setError(emailInput, 'Email is required');
+                return false;
+            } else if (!re.test(emailValue)) {
+                setError(emailInput, 'Email is not valid');
+                return false;
+            } else {
+                setSuccess(emailInput);
+                return true;
+            }
+        }
+
+        function checkMessage() {
+            const messageValue = messageInput.value.trim();
+            if (messageValue === '') {
+                setError(messageInput, 'Message is required');
+                return false;
+            } else {
+                setSuccess(messageInput);
+                return true;
+            }
+        }
+
+        // Real-time validation
+        nameInput.addEventListener('input', checkName);
+        emailInput.addEventListener('input', checkEmail);
+        messageInput.addEventListener('input', checkMessage);
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const validName = checkName();
+            const validEmail = checkEmail();
+            const validMessage = checkMessage();
+
+            if (validName && validEmail && validMessage) {
+                alert('Form submitted successfully!');
+                form.reset();
+                document.querySelectorAll('.form-group').forEach(group => group.className = 'form-group');
+            }
+        });
+    </script>
+</body>
+
+</html>
