@@ -1,2 +1,101 @@
 # code
 nơi chứa code html
+đây là code giỏ hàng có thể add thêm 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Product Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        .cart-counter {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: red;
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 250px;
+        }
+        
+        .card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        
+        .card h3 {
+            margin: 10px 0;
+        }
+        
+        .card p {
+            color: green;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .card button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .card button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cart-counter" id="cartCount">0</div>
+
+    <div class="card">
+        <img src="https://via.placeholder.com/80" alt="Product">
+        <h3>Sample Product</h3>
+        <p>$49.99</p>
+        <button id="addToCart">Add to Cart</button>
+    </div>
+
+    <script>
+        const cartCount = document.getElementById("cartCount");
+        const addBtn = document.getElementById("addToCart");
+
+        let count = 0;
+        addBtn.addEventListener("click", () => {
+            count++;
+            cartCount.textContent = count;
+        });
+    </script>
+</body>
+
+</html>
