@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filterable Portfolio Gallery</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* Filter buttons */
+    .filter-buttons {
+      margin-bottom: 20px;
+    }
+
+    .filter-buttons button {
+      background-color: #3498db;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .filter-buttons button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Gallery grid */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .item {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .item p {
+      margin: 10px 0;
+      font-weight: bold;
+    }
+
+    .item:hover {
+      transform: scale(1.05);
+    }
+
+    /* Hide elements */
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Filterable Portfolio Gallery</h1>
+
+  <!-- Filter buttons -->
+  <div class="filter-buttons">
+    <button onclick="filterGallery('all')">All</button>
+    <button onclick="filterGallery('photo')">Photos</button>
+    <button onclick="filterGallery('design')">Designs</button>
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery">
+    <!-- Photos -->
+    <div class="item photo">
+      <img src="https://via.placeholder.com/300x200/3498db/ffffff?text=Photo+1" alt="Photo 1">
+      <p>Photo 1</p>
+    </div>
+    <div class="item photo">
+      <img src="https://via.placeholder.com/300x200/2ecc71/ffffff?text=Photo+2" alt="Photo 2">
+      <p>Photo 2</p>
+    </div>
+    <div class="item photo">
+      <img src="https://via.placeholder.com/300x200/1abc9c/ffffff?text=Photo+3" alt="Photo 3">
+      <p>Photo 3</p>
+    </div>
+    <div class="item photo">
+      <img src="https://via.placeholder.com/300x200/9b59b6/ffffff?text=Photo+4" alt="Photo 4">
+      <p>Photo 4</p>
+    </div>
+    <div class="item photo">
+      <img src="https://via.placeholder.com/300x200/16a085/ffffff?text=Photo+5" alt="Photo 5">
+      <p>Photo 5</p>
+    </div>
+
+    <!-- Designs -->
+    <div class="item design">
+      <img src="https://via.placeholder.com/300x200/e74c3c/ffffff?text=Design+1" alt="Design 1">
+      <p>Design 1</p>
+    </div>
+    <div class="item design">
+      <img src="https://via.placeholder.com/300x200/f39c12/ffffff?text=Design+2" alt="Design 2">
+      <p>Design 2</p>
+    </div>
+    <div class="item design">
+      <img src="https://via.placeholder.com/300x200/8e44ad/ffffff?text=Design+3" alt="Design 3">
+      <p>Design 3</p>
+    </div>
+    <div class="item design">
+      <img src="https://via.placeholder.com/300x200/d35400/ffffff?text=Design+4" alt="Design 4">
+      <p>Design 4</p>
+    </div>
+    <div class="item design">
+      <img src="https://via.placeholder.com/300x200/2c3e50/ffffff?text=Design+5" alt="Design 5">
+      <p>Design 5</p>
+    </div>
+  </div>
+
+  <script>
+    function filterGallery(category) {
+      let items = document.querySelectorAll('.item');
+      items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+          item.classList.remove('hide');
+        } else {
+          item.classList.add('hide');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+ảnh không có thật
