@@ -1,6 +1,4 @@
-# code
-nơi chứa code html
-đây là code giỏ hàng có thể add thêm 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,5 +95,4 @@ nơi chứa code html
         });
     </script>
 </body>
-
 </html>
